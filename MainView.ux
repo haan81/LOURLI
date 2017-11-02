@@ -1,0 +1,10 @@
+<App Background="#022328">
+	<ClientPanel>
+        <PageControl>
+    		<ActionListPage />
+    		<ShowResult />
+    		<SetAlarmPage />
+        </PageControl>
+    </ClientPanel>
+        
+</App>
