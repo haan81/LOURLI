@@ -1,0 +1,63 @@
+<Page ux:Class="ActionListPage">
+	<JavaScript File="ActionListPage.js" />
+	<DockPanel>
+		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50"> Action List </Text>
+		<ScrollView>
+			<StackPanel>
+				<Rectangle ux:Class="Separator" Height="1" Fill="#fff4" />
+				<Panel ux:Class="BtnClick" HitTestMode="LocalBoundsAndChildren" Clicked="{onClick}">
+	            	<Text Color="White" Value="{Name}" Margin="20" />
+	            	<WhilePressed>
+	            		<Scale Factor=".95" Duration=".08" Easing="QuadraticOut"/>
+	            	</WhilePressed>
+	            </Panel>
+            	
+            	
+				<Text Value="Work out" FontSize="25" Margin="20"/>
+			    <Each Items="{items_workout}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+	         
+	            <Text Value="STUDY" FontSize="25" Margin="20"/>
+			    <Each Items="{items_study}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+
+	            <Text Value="WORK" FontSize="25" Margin="20"/>
+			    <Each Items="{items_Work}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+
+	            <Text Value="REST" FontSize="25" Margin="20"/>
+			    <Each Items="{items_Rest}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+
+	            <Text Value="COMMUTE" FontSize="25" Margin="20"/>
+			    <Each Items="{items_Commute}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+
+	            <Text Value="ETC" FontSize="25" Margin="20"/>
+	            <TextBox Value="{ETC_TEXT}" Width="300" Margin="50,0,50,4" Padding="20,7,20,7" />
+			    <Each Items="{items_Etc}">
+			    	<Separator />
+			    	<BtnClick />
+	            </Each>
+	            <Separator />
+
+
+        	</StackPanel>
+        </ScrollView>
+    </DockPanel>
+</Page>

@@ -1,0 +1,75 @@
+    <Page ux:Class="ShowResult">
+        <JavaScript File="ShowResult.js" />
+                    
+        <Panel>
+            <Panel ux:Class="UD_Btn_Long" Margin="10" Padding="10" >
+                <string ux:Property="Text" />
+                                
+                <Rectangle Layer="Background" Color="#125F63" CornerRadius="4" Width="350" >
+                <DropShadow Angle="90" Distance="1" Spread="0.2" Size="2" Color="#00000060" />
+                </Rectangle>
+                <Text Value="{ReadProperty Text}" FontSize="30" TextAlignment="Center" Color="#000000" />
+                <WhilePressed>
+                    <Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
+                </WhilePressed>
+            </Panel>
+
+            <DockPanel>
+                <Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,5"> Show Result </Text>
+    
+                <StackPanel>
+                    <Grid ColumnCount="3" Padding="10" Margin="10">
+                        <Text Value="Year (YYYY)" Color="#ffffff"/>
+                        <Text Value="Month (MM)" Color="#ffffff"/>
+                        <Text Value="Day (DD)" Color="#ffffff"/>
+
+                        <TextBox Value="{YYYY}" />
+                        <TextBox Value="{MM}" />
+                        <TextBox Value="{DD}" />
+                    </Grid>
+                    <Grid ColumnCount="1">
+                        <UD_Btn_Long Text="Show Result" Clicked="{Clicked_ShowResult}" />
+                        
+                    </Grid>
+
+                    <Panel Height="300">
+                        <Panel ux:Name="wheelPanel">
+                            <Panel ux:Name="wheel" Height="200" Margin="5,20,5,5" >
+                                <Panel Alignment="Center" Width="300" Height="300">
+                                    <Circle Color="#192050" Width="25%" Height="25%"/>
+                                    <Each Items="{items}">
+                                        <Rectangle Width="5" Color="#192050" Height="50%" TransformOrigin="Anchor" Anchor="50%,0%">
+                                            <Rotation Degrees="{endAngle} - 90"/>
+                                        </Rectangle>    
+                                    </Each>
+                                    <Each Items="{items}">
+                                        <Circle ux:Name="piece" Color="{Color}" StartAngleDegrees="{startAngle}" EndAngleDegrees="{endAngle}" Opacity=".3">
+                                            <WhileTrue Value="{isActive}">
+                                                <Change piece.Opacity="1" Duration="0.2"/>
+                                            </WhileTrue>
+                                        </Circle>
+                                    </Each>
+                                    <Rotation Degrees="{defaultRotation}" />
+                                </Panel>
+                            </Panel>
+                        </Panel>
+                    </Panel>
+
+                    <Panel Margin="50,0,10,50">
+                        <Grid ColumnCount="1">
+                            <Each Items="{items}">
+                                <TextView Value="{Name} : {value} %" TextColor="{Color}" />
+                            </Each>
+                        </Grid>
+                    </Panel>
+
+                </StackPanel>
+            </DockPanel>     
+
+
+
+
+
+
+        </Panel>
+    </Page>
