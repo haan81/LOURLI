@@ -29,7 +29,6 @@
                     </Grid>
                     <Grid ColumnCount="1">
                         <UD_Btn_Long Text="Show Result" Clicked="{Clicked_ShowResult}" />
-                        
                     </Grid>
 
                     <Panel Height="300">
@@ -62,14 +61,7 @@
                             </Each>
                         </Grid>
                     </Panel>
-
                 </StackPanel>
             </DockPanel>     
-
-
-
-
-
-
         </Panel>
     </Page>

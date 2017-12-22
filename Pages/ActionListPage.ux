@@ -4,6 +4,7 @@
 		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50"> Action List </Text>
 		<ScrollView>
 			<StackPanel>
+
 				<Rectangle ux:Class="Separator" Height="1" Fill="#fff4" />
 				<Panel ux:Class="BtnClick" HitTestMode="LocalBoundsAndChildren" Clicked="{onClick}">
 	            	<Text Color="White" Value="{Name}" Margin="20" />
@@ -11,8 +12,16 @@
 	            		<Scale Factor=".95" Duration=".08" Easing="QuadraticOut"/>
 	            	</WhilePressed>
 	            </Panel>
-            	
-            	
+
+           	
+				<Each Items="{ActList}">
+					<Separator />
+					<BtnClick />
+					<!--<Button Text="{Name}" Clicked="{onClick}" />-->
+				</Each>
+				<Separator />
+<!--
+
 				<Text Value="Work out" FontSize="25" Margin="20"/>
 			    <Each Items="{items_workout}">
 			    	<Separator />
@@ -48,15 +57,17 @@
 	            </Each>
 	            <Separator />
 
+
+
 	            <Text Value="ETC" FontSize="25" Margin="20"/>
 	            <TextBox Value="{ETC_TEXT}" Width="300" Margin="50,0,50,4" Padding="20,7,20,7" />
+
 			    <Each Items="{items_Etc}">
 			    	<Separator />
 			    	<BtnClick />
 	            </Each>
 	            <Separator />
-
-
+-->
         	</StackPanel>
         </ScrollView>
     </DockPanel>
