@@ -153,8 +153,12 @@
         items.add(itemList);
     }
 
+    function goBack(){
+        router.goBack();
+    }
 
     module.exports = {
+        goBack: goBack,
         items: items.map(function(i){
             var lastItem = {
                 startAngle: 0,

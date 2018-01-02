@@ -1,4 +1,6 @@
     <Page ux:Class="ShowResult">
+        <Router ux:Dependency="router" />
+
         <JavaScript File="ShowResult.js" />
                     
         <Panel>
@@ -61,6 +63,9 @@
                             </Each>
                         </Grid>
                     </Panel>
+
+                    <Button Text="Back" Clicked="{goBack}" />
+
                 </StackPanel>
             </DockPanel>     
         </Panel>

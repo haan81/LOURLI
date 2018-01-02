@@ -4,11 +4,9 @@
         <Navigator DefaultPath="Home">
 
 			<HomePage ux:Template="Home" router="router" />
-    		<ActionListPage ux:Template="ActionList" router="router"/>
- <!--
-    		<ShowResult ux:Template="ShowResult" />
-    		<SetAlarmPage ux:Template="SetAlarm" />    
--->    
+    		<ActionListPage ux:Template="ActionList" router="router" />
+    		<ShowResult ux:Template="ShowResult" router="router" />
+    		<SetAlarmPage ux:Template="SetAlarm" router="router" />        
         </Navigator>
     </ClientPanel>
         

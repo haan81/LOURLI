@@ -1,4 +1,6 @@
             <Page ux:Class="SetAlarmPage">
+                <Router ux:Dependency="router" />
+
                 <JavaScript File="SetAlarmPage.js" />
                     
                 <Panel>
@@ -48,6 +50,9 @@
                                     </Each> 
                                 </Panel>
                             </ScrollView>
+
+                            <Button Text="Back" Clicked="{goBack}" />
+                        
                         </StackPanel>
 
                     </DockPanel>

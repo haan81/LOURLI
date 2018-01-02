@@ -36,11 +36,17 @@
             }
         }
     }
+
+    function goBack(){
+        router.goBack();
+    }
+
     module.exports = {
         items : items,
         addItem : addItem,
         RemoveItem : RemoveItem,
         ClickRec: ClickRec,
         SettedItem : SettedItem,
-        TEXT : TEXT
+        TEXT : TEXT,
+        goBack: goBack
     };

@@ -40,9 +40,15 @@
         }           
     }       
 
+    function goBack(){
+        router.goBack();
+    }
+
     module.exports = {
         items_Etc: items_Etc,
         ActList: ActList,
         ETC_TEXT: ETC_TEXT,
-        onClick: onClick
+        onClick: onClick,
+        goBack: goBack
+
     }
