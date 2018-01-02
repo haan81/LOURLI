@@ -8,7 +8,9 @@ var ActList = [
     {Name:"User Support"},
     {Name:"READ a Book"}, 
     {Name:"Sleep"},
-    {Name:"Rest"}
+    {Name:"Rest"},
+    {Name:"Go to work"},
+    {Name:"Back home"}
 ];
 
 module.exports = ActList;

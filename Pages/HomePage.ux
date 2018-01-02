@@ -1,0 +1,16 @@
+<Page ux:Class="HomePage">
+	<Router ux:Dependency="router" />
+	<DockPanel>
+		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50,0,0"> LOURLI </Text>
+		<Text Color="White" FontSize="15" TextAlignment="Center" Dock="Top" Margin="0,0,0,50"> logging your Life </Text>
+		<ScrollView>
+			<StackPanel>
+				<Button Text="Action List" />
+				<Button Text="Show Result" />
+				<Button Text="Set Alarm" />
+
+
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</Page>
