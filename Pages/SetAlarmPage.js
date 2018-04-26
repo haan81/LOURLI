@@ -1,6 +1,5 @@
     var Observable = require('FuseJS/Observable');
     var items = Observable();
-    var TEXT =  Observable();
     var SettedItem = Observable();
     var idx = 0;
     var iClickedIdx = 0;
@@ -15,7 +14,8 @@
         if(SettedItem.value!=""){
             items.add({
                 color : [Math.random(), Math.random(), Math.random(), 1],
-                height : (Math.random() + 1.0) * 80,
+                //height : (Math.random() + 1.0) * 80,
+                height : 50,
                 Value : SettedItem.value,
                 ID : idx
             });
@@ -47,6 +47,5 @@
         RemoveItem : RemoveItem,
         ClickRec: ClickRec,
         SettedItem : SettedItem,
-        TEXT : TEXT,
         goBack: goBack
     };

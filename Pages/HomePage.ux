@@ -1,17 +1,47 @@
 <Page ux:Class="HomePage">
 	<Router ux:Dependency="router" />
 	<JavaScript File="HomePage.js" />
-	<DockPanel>
-		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50,0,0"> LOURLI </Text>
-		<Text Color="White" FontSize="15" TextAlignment="Center" Dock="Top" Margin="0,0,0,50"> logging your Life </Text>
-		<ScrollView>
-			<StackPanel> 
-				<Button Text="Action List" Clicked="{goActionList}" />
-				<Button Text="Show Result" Clicked="{goShowResult}" />
-				<Button Text="Set Alarm" Clicked="{goSetAlarm}" />
+	<DockPanel Alignment="Top">
+		<StackPanel>
+
+			<Panel ux:Class="HeadTitle" Margin="10" Padding="10" >
+				<string ux:Property="Text" />
+				<int ux:Property="FontSize" />
+				<string ux:Property="FontColor" />
+
+				<Text Value="{ReadProperty Text}" FontSize="{ReadProperty FontSize}" TextAlignment="Center" Color="{ReadProperty FontColor}" />
+				<DropShadow Angle="135" Distance="10" Spread="0.2" Size="2" Color="#00000060" />
+			</Panel>
+
+			<HeadTitle Text="LOURLI" FontSize="50" FontColor="#ffffff" Margin="0,50,0,-20" />
+			<HeadTitle Text="logging your Life" FontSize="20" FontColor="#aaffff" Margin="0,0,0,50" />
+
+		</StackPanel>
+	</DockPanel>
+
+	<DockPanel Alignment="Center" Width="400">
+		<Panel ux:Class="HP_Btn" Margin="10" Padding="10" >
+            <string ux:Property="Text" />
+                    
+            <Rectangle Layer="Background" CornerRadius="0" Width="300" Color="#aaeeff20" Height="60" Margin="0,15">
+            	<DropShadow Angle="135" Distance="5" Spread="0.2" Size="2" Color="#00000060" />
+            </Rectangle>
+
+            <Text Value="{ReadProperty Text}" FontSize="20" TextAlignment="Center" Color="#ffffff" Margin="0,15"/>
+            <DropShadow Angle="135" Distance="5" Spread="0.2" Size="2" Color="#00000060" />
+
+            <WhilePressed>
+                <Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
+            </WhilePressed>
+        </Panel>
 
 
-			</StackPanel>
-		</ScrollView>
+		<StackPanel> 
+			<Rectangle Height="100" />
+			<HP_Btn Text="Activities" Clicked="{goActionList}" />
+			<HP_Btn Text="Show Result" Clicked="{goShowResult}" />
+			<HP_Btn Text="Set Alarm" Clicked="{goSetAlarm}" />
+		</StackPanel>
+
 	</DockPanel>
 </Page>

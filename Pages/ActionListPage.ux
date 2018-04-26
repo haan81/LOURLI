@@ -1,37 +1,148 @@
 <Page ux:Class="ActionListPage">
 	<Router ux:Dependency="router" />
+
 	<JavaScript File="ActionListPage.js" />
-	<DockPanel>
-		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50"> Action List </Text>
-		<ScrollView>
-			<StackPanel>
 
-				<Rectangle ux:Class="Separator" Height="1" Fill="#fff4" />
-				<Panel ux:Class="BtnClick" HitTestMode="LocalBoundsAndChildren" Clicked="{onClick}">
-	            	<Text Color="White" Value="{Name}" Margin="15" />
-	            	<WhilePressed>
-	            		<Scale Factor=".95" Duration=".08" Easing="QuadraticOut"/>
-	            	</WhilePressed>
-	            </Panel>
-           	
-				<Each Items="{ActList}">
-					<Separator />
-					<BtnClick />
-				</Each>
-				<Separator />
 
-	            <Text Value="ETC" FontSize="25" Margin="10"/>
-	            <TextBox Value="{ETC_TEXT}" Width="300" Margin="50,0,50,4" Padding="20,7,20,7" />
+    <WhileTrue Value="{pickerOn}">
+        <Change page1PickerPanel.Y="0" Duration=".5" />
+        </WhileTrue>
+    <WhileFalse Value="{pickerOn}">
+        <Change page1PickerPanel.Y="100%" Duration=".5" />
+    </WhileFalse>
+    
+    <DockPanel ux:Name="page1PickerPanel" Width="100%" Height="30%" Color="White" Alignment="Bottom" Y="100%">
+        <Panel Dock="Top" Width="100%" Height="25%">
+            <Text Value="confirm" Alignment="CenterRight" Margin="{margin}" Color="#18f" FontSize="{margin}*1.2">
+                <Clicked>
+                    <Callback Handler="{pickerDown}" />
+                </Clicked>
+            </Text>
 
-			    <Each Items="{items_Etc}">
-			    	<Separator />
-			    	<BtnClick />
-	            </Each>
-	            <Separator />
+            <Rectangle Width="100%" Height="1" Color="#888" Alignment="Top" />
+        </Panel>
 
-	            <Button Text="Back" Clicked="{goBack}" />
+        <Grid ColumnCount="3" Columns="*, 1*, *" Width="100%" Dock="Fill" Color="#ddd">
+            <Panel />
+            
+            <MyPicker Selected="{Act}" Data="{ActList}" />
 
-        	</StackPanel>
-        </ScrollView>
+            <Panel />
+        </Grid>
     </DockPanel>
+
+    <Rectangle ux:Class="Separator" Height="1" Fill="#fff4" />
+    <Panel ux:Class="BtnClick" HitTestMode="LocalBoundsAndChildren" Clicked="{onClick}">
+        <Text Color="White" Value="{Act}" Margin="15" Alignment="Center"/>
+        <WhilePressed>
+            <Scale Factor=".95" Duration=".08" Easing="QuadraticOut"/>
+        </WhilePressed>
+    </Panel>
+
+
+
+    <StackPanel>
+
+
+
+    	<DockPanel> 
+    		<Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50"> Activities </Text>
+        </DockPanel>
+
+        <Separator />
+        
+        <Text Value="Activities" FontSize="25" Margin="10"/>
+        <Text Value="{InputtedStr}" Color="#abc"  FontSize="20" Alignment="Center" />
+        
+        <Button Text="Select Item" Clicked="{togglePicker}" Height="50" />
+        
+        <TextBox Value="{Act}" Width="300" Margin="50,0,50,4" Padding="20,7,20,7" />
+
+        <BtnClick />
+        <Separator />
+        
+
+        
+    </StackPanel>
+
+        <DockPanel Width="200" Height="50" Alignment="Bottom">
+            <Button Text="Back" Clicked="{goBack}" />
+            
+        </DockPanel>            
+        
+
+
+
+
+
+    
+
+
+    <Panel ux:Class="MyPicker" ux:AutoBind="false">
+        <object ux:Property="Data" />
+        <string ux:Property="Selected" />
+
+        <JavaScript>
+            var srcData = this.Data.inner();
+
+            var datas = srcData.map(function(data) {
+                return data
+            });
+            
+            module.exports = {
+                datas
+            };
+        </JavaScript>
+
+        <Page ux:Class="SpinnerPage" Width="100%" Alignment="Center">
+            <string ux:Property="SpinnerValue" />
+            <Panel ux:Name="spinnerPanel">
+                <Selectable Value="{Property SpinnerValue}" />
+                <EnteringAnimation Scale="0.25">
+                    <Move RelativeTo="Size" KeyframeInterpolation="CatmullRom">
+                        <Keyframe Y="-1.5" Time="0.25" />
+                        <Keyframe Y="-2.3" Time="0.5" />
+                        <Keyframe Y="-2.9" Time="0.75" />
+                        <Keyframe Y="-4.5" Time="1" />
+                    </Move>
+
+                    <Change spinnerPanel.Opacity="0" Duration="0.75" Easing="QuadraticInOut" />
+                    <!-- <Change label.TetColor="#FFF" Duration="0.2" Easing="QuadraticInOut" /> -->
+                    <Change label.FontSize="20" Duration="0.2" Easing="Linear" />
+                    <Scale Factor="0.1" Duration="1" />
+                </EnteringAnimation>
+                <ExitingAnimation Scale="0.25">
+                    <Move RelativeTo="Size" KeyframeInterpolation="CatmullRom">
+                        <Keyframe Y="1.5" Time="0.25" />
+                        <Keyframe Y="2.3" Time="0.5" />
+                        <Keyframe Y="2.9" Time="0.75" />
+                        <Keyframe Y="4.5" Time="1" />
+                    </Move>
+                    <Change spinnerPanel.Opacity="0" Duration="0.75" Easing="QuadraticInOut" />
+                    <!-- <Change label.TextColor="#FFF" Duration="0.2" Easing="QuadraticInOut" /> -->
+                    <Change label.FontSize="20" Duration="0.2" Easing="Linear" />
+                    <Scale Factor="0.1" Duration="1" />
+                </ExitingAnimation>
+
+                <Text ux:Name="label" Alignment="Center" TextTruncation="None" Value="{ReadProperty SpinnerValue}" FontSize="{margin}*2" />
+                <Panel Width="100%" Height="120%" />
+
+                <WhileActive>
+                    <ToggleSelection />
+                </WhileActive>
+            </Panel>
+        </Page>
+
+        <Panel Height="100%" Color="#ddd">
+            <PageControl Width="50%" Orientation="Vertical" InactiveState="Unchanged" Transition="None" Active="{Property Selected}" >
+                <Selection Value="{Property Selected}" MaxCount="1" MinCount="1" />
+                <Each Items="{datas}" Defer="Deferred">
+                    <SpinnerPage Name="{}" SpinnerValue="{}"/>
+                </Each>
+            </PageControl>
+        </Panel>
+
+	           
+    </Panel>
+
 </Page>

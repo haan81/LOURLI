@@ -1,61 +1,60 @@
-            <Page ux:Class="SetAlarmPage">
-                <Router ux:Dependency="router" />
-
-                <JavaScript File="SetAlarmPage.js" />
+<Page ux:Class="SetAlarmPage">
+    <Router ux:Dependency="router" />
+    <JavaScript File="SetAlarmPage.js" />
                     
-                <Panel>
-                    <Panel ux:Class="UD_Btn" Margin="10" Padding="10" >
-                        <string ux:Property="Text" />
-                                
-                        <Rectangle Layer="Background" Color="#125F63" CornerRadius="4" Width="150" >
-                        <DropShadow Angle="90" Distance="1" Spread="0.2" Size="2" Color="#00000060" />
-                        </Rectangle>
-                        <Text Value="{ReadProperty Text}" FontSize="30" TextAlignment="Center" Color="#000000" />
-                        <WhilePressed>
-                            <Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
-                        </WhilePressed>
+        <Panel ux:Class="UD_Btn" Margin="10" Padding="10" >
+            <string ux:Property="Text" />
+                    
+            <Rectangle Layer="Background" Color="#125F63" CornerRadius="4" Width="150" >
+            <DropShadow Angle="90" Distance="1" Spread="0.2" Size="2" Color="#00000060" />
+            </Rectangle>
+            <Text Value="{ReadProperty Text}" FontSize="30" TextAlignment="Center" Color="#000000" />
+            <WhilePressed>
+                <Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
+            </WhilePressed>
+        </Panel>
 
+        <StackPanel>
+
+            <DockPanel>
+                <Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,50"> Alarm Setup </Text>
+            </DockPanel>
+
+            <Separator />
+            <Text Value="Set alarm" FontSize="25" Margin="10"/>
+            <StackPanel>
+                <TextBox Value="{SettedItem}" Width="300" Height="50" />
+                <Grid ColumnCount="2">
+                    <UD_Btn Text="ADD" Clicked="{addItem}" />
+                    <UD_Btn Text="DELETE" Clicked="{RemoveItem}" />
+                </Grid>
+            </StackPanel>
+            
+            <Separator />
+             <!-- </MyRectangle> -->
+
+            <!-- <StackPanel> -->
+                <ScrollView>
+                    <Panel Name="P1" Height="300">
+                        <ColumnLayout ColumnCount="3"/>
+                        <Each Items="{items}" >
+                            <Rectangle  ux:Name="item" Clicked="{ClickRec}" Color="{color}" Height="{height}" Margin="5" CornerRadius="5"  >
+                                <AddingAnimation>
+                                    <Change item.Opacity="0" Duration="0.3" />
+                                </AddingAnimation>
+                                <Text Value="{ID}" />
+                                <TextBox Value="{Value}" />
+                            </Rectangle>
+                        </Each> 
                     </Panel>
+                </ScrollView>
+            <!-- </StackPanel> -->
+        
+        </StackPanel>
+        <DockPanel Width="200" Height="50" Alignment="Bottom">
+            <Button Text="Back" Clicked="{goBack}" />
+        </DockPanel>     
+        
 
-                    <DockPanel>
-                        <Text Color="White" FontSize="30" TextAlignment="Center" Dock="Top" Margin="0,5"> Alarm Setup </Text>
-
-                        <Rectangle ux:Class="MyRectangle" MinWidth="10" MinHeight="20" />
-                        <MyRectangle Color="#00000050" Dock="Top">
     
-                            <StackPanel>
-                            <Text Value="Selected Rec is {Clicked_TEXT}" />
-                            <Text Value="{TEXT}" />
-                                
-                            <TextBox Value="{SettedItem}" Width="300" Height="50" />
-                            <Grid ColumnCount="2">
-                                <UD_Btn Text="ADD" Clicked="{addItem}" />
-                                <UD_Btn Text="DELETE" Clicked="{RemoveItem}" />
-                            </Grid>
-                        </StackPanel>
-                        </MyRectangle>
-
-                        <StackPanel>
-                            <ScrollView>
-                                <Panel Name="P1">
-                                    <ColumnLayout ColumnCount="3"/>
-                                    <Each Items="{items}" >
-                                        <Rectangle  ux:Name="item" Clicked="{ClickRec}" Color="{color}" Height="{height}" Margin="5" CornerRadius="5"  >
-                                            <AddingAnimation>
-                                                <Change item.Opacity="0" Duration="0.3" />
-                                            </AddingAnimation>
-                                            <Text Value="{ID}" />
-                                            <TextBox Value="{Value}" />
-                                        </Rectangle>
-                                    </Each> 
-                                </Panel>
-                            </ScrollView>
-
-                            <Button Text="Back" Clicked="{goBack}" />
-                        
-                        </StackPanel>
-
-                    </DockPanel>
-
-                </Panel>
-            </Page>
+</Page>

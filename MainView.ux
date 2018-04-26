@@ -1,4 +1,5 @@
-<App Background="#022328">
+<App Background="#50C1E9">
+
 	<Router ux:Name="router" />
 	<ClientPanel>
         <Navigator DefaultPath="Home">
@@ -6,7 +7,7 @@
 			<HomePage ux:Template="Home" router="router" />
     		<ActionListPage ux:Template="ActionList" router="router" />
     		<ShowResult ux:Template="ShowResult" router="router" />
-    		<SetAlarmPage ux:Template="SetAlarm" router="router" />        
+    		<SetAlarmPage ux:Template="SetAlarm" router="router" />      
         </Navigator>
     </ClientPanel>
         

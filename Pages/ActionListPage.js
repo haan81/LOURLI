@@ -1,10 +1,11 @@
     var Observable = require('FuseJS/Observable');
-    var ETC_TEXT = Observable();
+    var InputtedStr = Observable();
+    var Act = Observable();
     var ActList = require("ActList");
     
-    let items_Etc=[{Name:"ENTER"}]
     
     function onClick(args) {
+
         var currentdate = new Date();
         var currDate = currentdate.getFullYear() + "/"
                        + (currentdate.getMonth()+1)  + "/" 
@@ -16,28 +17,22 @@
 
         var currTime = rounded.getHours() + ':' + rounded.getMinutes()
         var curTime = currTime.toString();  
-        var sAction = args.data.Name;
+        var sAction = Act.value;
 
-        if (sAction!="ENTER")
-        {      
-            fetch('https://script.google.com/macros/s/AKfycbwmsx6T76fseLVwaA12wscU3iTed_XSQQ9doyNus39Uegl0kko/exec', {
-                method: 'post',
-                headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-                body: 'Date=' + currDate + '&' +
-                      'Time=' + currTime + '&' +
-                      'Action=' + sAction
-                }).then(function(response) {})
-        }            
-        else
-        {
-            fetch('https://script.google.com/macros/s/AKfycbwmsx6T76fseLVwaA12wscU3iTed_XSQQ9doyNus39Uegl0kko/exec', {
-                method: 'post',
-                headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-                body: 'Date=' + currDate + '&' +
-                      'Time=' + currTime + '&' +
-                      'Action=' + ETC_TEXT.value
-                }).then(function(response) {})
-        }           
+        
+        fetch('https://script.google.com/macros/s/AKfycbwmsx6T76fseLVwaA12wscU3iTed_XSQQ9doyNus39Uegl0kko/exec', {
+            method: 'post',
+            headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+            body: 'Date=' + currDate + '&' +
+                  'Time=' + currTime + '&' +
+                  'Action=' + sAction
+            }).then(function(response) {})
+    
+        var a = "Date : " + currDate + " | Time : " + currTime + " | Activity : " + sAction; 
+        console.log("a : " + a);
+
+        InputtedStr.value = currDate + " | " + currTime + " | " + sAction;
+        console.log("onClink : " + InputtedStr.value);
     }       
 
     function goBack(){
@@ -45,10 +40,24 @@
     }
 
     module.exports = {
-        items_Etc: items_Etc,
+        Act:Act,
         ActList: ActList,
-        ETC_TEXT: ETC_TEXT,
+        InputtedStr: InputtedStr,
         onClick: onClick,
         goBack: goBack
 
     }
+    
+    module.exports.margin = 10;
+
+    var isPicker = Observable(false);
+    module.exports.pickerOn = isPicker;
+    module.exports.pickerDown = function() {
+                    console.log("Act: "  + Act.value);
+                    isPicker.value = false;
+    };
+
+    module.exports.togglePicker = function() { 
+        isPicker.value = !isPicker.value;
+    }
+    
