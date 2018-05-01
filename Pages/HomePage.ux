@@ -1,34 +1,28 @@
 <Page ux:Class="HomePage">
 	<Router ux:Dependency="router" />
 	<JavaScript File="HomePage.js" />
+<!-- 
 	<DockPanel Alignment="Top">
 		<StackPanel>
-
-			<Panel ux:Class="HeadTitle" Margin="10" Padding="10" >
-				<string ux:Property="Text" />
-				<int ux:Property="FontSize" />
-				<string ux:Property="FontColor" />
-
-				<Text Value="{ReadProperty Text}" FontSize="{ReadProperty FontSize}" TextAlignment="Center" Color="{ReadProperty FontColor}" />
-				<DropShadow Angle="135" Distance="10" Spread="0.2" Size="2" Color="#00000060" />
-			</Panel>
-
 			<HeadTitle Text="LOURLI" FontSize="50" FontColor="#ffffff" Margin="0,50,0,-20" />
-			<HeadTitle Text="logging your Life" FontSize="20" FontColor="#aaffff" Margin="0,0,0,50" />
+			<HeadTitle Text="logging your Life" FontSize="20" FontColor="#ffffff" Margin="0,0,0,50" />
 
 		</StackPanel>
 	</DockPanel>
+
 
 	<DockPanel Alignment="Center" Width="400">
 		<Panel ux:Class="HP_Btn" Margin="10" Padding="10" >
             <string ux:Property="Text" />
                     
-            <Rectangle Layer="Background" CornerRadius="0" Width="300" Color="#aaeeff20" Height="60" Margin="0,15">
+            <Rectangle Layer="Background" CornerRadius="0" Width="300"  Height="60"  StrokeWidth="1" StrokeColor="#ffffff" Margin="0,15">
             	<DropShadow Angle="135" Distance="5" Spread="0.2" Size="2" Color="#00000060" />
             </Rectangle>
 
-            <Text Value="{ReadProperty Text}" FontSize="20" TextAlignment="Center" Color="#ffffff" Margin="0,15"/>
-            <DropShadow Angle="135" Distance="5" Spread="0.2" Size="2" Color="#00000060" />
+
+            <Text Value="{ReadProperty Text}" FontSize="20" TextAlignment="Center" Color="#ffffff" Margin="0,15" />
+            <DropShadow Angle="135" Distance="5" Spread="0.2" Size="2" Color="#ffffff60" />
+
 
             <WhilePressed>
                 <Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
@@ -44,4 +38,63 @@
 		</StackPanel>
 
 	</DockPanel>
+ -->
+
+ 	<Text ux:Class="Title" Color="#fff" FontSize="30" Margin="10" Alignment="TopLeft" HitTestMode="None">
+		<Shadow Size="10" Distance="1" Color="#000" Mode="PerPixel" />
+	</Text>
+	<Image ux:Class="MyImage" StretchMode="UniformToFill" />
+	
+	<Grid RowCount="4" DefaultRow="1*">
+		<Panel ClipToBounds="true">
+			<Panel>
+				<StackPanel>
+					<StatusBarBackground />
+					<Title>Activities</Title>
+				</StackPanel>
+				<MyImage File="Asset/blur.png" Margin="-20" />
+				<Blur ux:Name="blur" Radius="0" />
+			</Panel>
+			
+			<WhilePressed>
+				<Change blur.Radius="10" Duration="0.3" />
+			</WhilePressed>
+		</Panel>
+		<Panel>
+			<MyImage File="Asset/halftone.png">
+				<Title>Show Result</Title>
+				<Halftone ux:Name="halftone" Smoothness="1" DotTint="1" PaperTint="1" Spacing="5" Intensity="0.2" />
+			</MyImage>
+			
+			<WhilePressed>
+				<Change halftone.DotTint="0.1" Duration="0.3" />
+				<Change halftone.PaperTint=".5" Duration="0.3" />
+				<Change halftone.Intensity="0.6" Duration="0.3" />
+			</WhilePressed>
+		</Panel>
+		<Panel>
+			<Title>Set Alarm</Title>
+			
+			<MyImage File="Asset/desaturate.png">
+				<Desaturate ux:Name="desaturate" Amount="0" />
+				
+				<WhilePressed>
+					<Change desaturate.Amount="1" Duration="0.3" Easing="QuadraticInOut" />
+				</WhilePressed>
+			</MyImage>
+		</Panel>
+		<Panel>
+			<Text Value="Daily Goal" Alignment="Center" FontSize="70" Color="#fff">
+				<Mask File="Asset/mask.png" Mode="Grayscale" />
+			</Text>
+			<MyImage ux:Name="maskBackground" File="Asset/mask_bg.png" />
+			
+			<WhilePressed>
+				<Change maskBackground.Color="#111" Duration="0.3" Easing="QuadraticInOut" />
+			</WhilePressed>
+		</Panel>
+		
+
+	</Grid>
+
 </Page>

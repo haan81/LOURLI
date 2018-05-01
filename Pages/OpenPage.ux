@@ -1,0 +1,24 @@
+<Page ux:Class="OpenPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="OpenPage.js" />
+
+	<DockPanel Alignment="Center">
+		<StackPanel>
+
+			<Panel ux:Class="HeadTitle" Margin="10" Padding="10" >
+				<string ux:Property="Text" />
+				<int ux:Property="FontSize" />
+				<string ux:Property="FontColor" />
+
+				<Text Value="{ReadProperty Text}" FontSize="{ReadProperty FontSize}" TextAlignment="Center" Color="{ReadProperty FontColor}" />
+				<DropShadow Angle="135" Distance="1" Spread="0.1" Size="1" Color="#aaaaaa" />
+			</Panel>
+
+			<HeadTitle Text="LOURLI" FontSize="50" FontColor="#ffffff" Margin="0,50,0,-20" />
+			<HeadTitle Text="logging your Life" FontSize="20" FontColor="#ffffff" Margin="0,0,0,50" />
+
+		</StackPanel>
+	</DockPanel>
+
+
+</Page>

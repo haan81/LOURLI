@@ -1,14 +1,22 @@
-<App Background="#50C1E9">
-
+<!-- <App Background="#50C1E9"> -->
+<App Background="#aaaaff">
 	<Router ux:Name="router" />
 	<ClientPanel>
-        <Navigator DefaultPath="Home">
-
+        <Navigator DefaultPath="Open">
+			<OpenPage ux:Template="Open" router="router" />
 			<HomePage ux:Template="Home" router="router" />
     		<ActionListPage ux:Template="ActionList" router="router" />
     		<ShowResult ux:Template="ShowResult" router="router" />
     		<SetAlarmPage ux:Template="SetAlarm" router="router" />      
         </Navigator>
     </ClientPanel>
+
+
+
+    <Grid ColumnCount="1">
+        <Blur ux:Name="blur" Radius="5" />
+        <Image Row="0" File="Pages/Asset/IMG_2228.jpg" StretchMode="UniformToFill" />
+    </Grid>
+
         
 </App>
