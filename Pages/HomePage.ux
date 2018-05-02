@@ -49,10 +49,9 @@
 		<Panel ClipToBounds="true">
 			<Panel>
 				<StackPanel>
-					<StatusBarBackground />
 					<Title>Activities</Title>
 				</StackPanel>
-				<MyImage File="Asset/blur.png" Margin="-20" />
+				<MyImage File="Asset/IMG_0301.jpg" Margin="-20" Clicked="{goActionList}"/>
 				<Blur ux:Name="blur" Radius="0" />
 			</Panel>
 			
@@ -60,8 +59,9 @@
 				<Change blur.Radius="10" Duration="0.3" />
 			</WhilePressed>
 		</Panel>
+
 		<Panel>
-			<MyImage File="Asset/halftone.png">
+			<MyImage File="Asset/IMG_0310.jpg" Clicked="{goShowResult}" >
 				<Title>Show Result</Title>
 				<Halftone ux:Name="halftone" Smoothness="1" DotTint="1" PaperTint="1" Spacing="5" Intensity="0.2" />
 			</MyImage>
@@ -72,10 +72,11 @@
 				<Change halftone.Intensity="0.6" Duration="0.3" />
 			</WhilePressed>
 		</Panel>
+
 		<Panel>
 			<Title>Set Alarm</Title>
 			
-			<MyImage File="Asset/desaturate.png">
+			<MyImage File="Asset/IMG_0334.jpg" Clicked="{goSetAlarm}">
 				<Desaturate ux:Name="desaturate" Amount="0" />
 				
 				<WhilePressed>
@@ -83,11 +84,12 @@
 				</WhilePressed>
 			</MyImage>
 		</Panel>
+
 		<Panel>
 			<Text Value="Daily Goal" Alignment="Center" FontSize="70" Color="#fff">
 				<Mask File="Asset/mask.png" Mode="Grayscale" />
 			</Text>
-			<MyImage ux:Name="maskBackground" File="Asset/mask_bg.png" />
+			<MyImage ux:Name="maskBackground" File="Asset/IMG_0509.jpg" />
 			
 			<WhilePressed>
 				<Change maskBackground.Color="#111" Duration="0.3" Easing="QuadraticInOut" />
