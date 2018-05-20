@@ -47,11 +47,6 @@ function Clicked_ShowResult(){
             var sMonth = sDateofData.split("/")[1].trim();
             var sDay = sDateofData.split("/")[2].trim();
             
-            if (sMonth.length==1)
-                sMonth="0"+sMonth;
-            if (sDay.length==1)
-                sDay="0"+sDay;
-
             sDateofData = sYear + "/" + sMonth + "/" + sDay;               
             
             console.log(sDateofData + " // " + SelectedDate);
@@ -197,23 +192,20 @@ module.exports = {
         var currentMonth = currentTime.getMonth() + 1;
         var currentDay = currentTime.getDate();
 
-        var year = Observable(currentYear);
+        var year = Observable();
+        var month = Observable();
+        var day = Observable();
+        
+
         var years = Observable();
         for (var i = 0 ; i < 30 ; i++) { years.add(2002+i); }
 
-        var month = Observable(currentMonth);
         var months = Observable();
         for (var i = 0 ; i < 12 ; i++) { months.add(1+i); }
 
-        var day = Observable(currentDay);
         var days = Observable();
         for (var i = 0 ; i < 31 ; i++) { days.add(1+i); }
 
-
-
-        // year=currentYear;
-        // month=currentMonth;
-        // day=currentDay;        
         
         
 
@@ -233,4 +225,19 @@ module.exports = {
             isPicker.value = false;
         };
 
-        module.exports.togglePicker = function() { isPicker.value = !isPicker.value; }
+        module.exports.togglePicker = function() {
+            isPicker.value = !isPicker.value; 
+
+            console.log(year.value);
+
+            if(year.value==null || year.value=="")
+                year.value=currentYear;
+
+            if(month.value==null || month.value=="")
+                month.value=currentMonth;
+
+            if(day.value==null || day.value=="")
+                day.value=currentDay;
+
+
+        }
